@@ -1,0 +1,21 @@
+@import './main.scss';
+
+// background-colors
+.red {background-color: $red;}
+.orange {background-color: $orange;}
+.yellow {background-color: $yellow;}
+.green {background-color: $green;}
+.blue {background-color: $blue;}
+.indigo {background-color: $indigo;}
+.violet {background-color: $violet;}
+
+.clicker {
+  width: 100vw;
+  height: 100vh;
+  border: 1px solid;
+  background-color: $blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
