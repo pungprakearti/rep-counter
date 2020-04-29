@@ -6,17 +6,10 @@ export default class Counter extends Component {
     super(props)
     this.state = {
       activity: 0,
-      advance: false,
       rep: 0,
       timeRemaining: 10,
       showFinish: false,
-      step: 0
     }
-    this.steps = [
-      'Start',
-      'Begin',
-      'Finished!'
-    ]
   }
 
   // start repetition and then rest
@@ -129,4 +122,9 @@ export default class Counter extends Component {
 7. At end, rep++
 8. At last rep, go to new exercise set and repeat
 9. after all exercises, start stretch sets
+
+todo:
+https://stackoverflow.com/questions/52184291/async-await-with-setinterval
+
+create delay function to clean up setIntervals.
 */
