@@ -20,25 +20,11 @@ export default class Counter extends Component {
   }
 
   // start repetition and then rest
-  countDown = (mode) => {
-    let timeRemaining
-    const { eHold, eRest, sHold } = this.props
-
-    switch(mode) {
-      case 'workE':
-        timeRemaining = eHold
-        break
-      case 'workS':
-        timeRemaining = sHold
-        break
-      default:
-        timeRemaining = eRest
-    }
-
-    console.log(timeRemaining)
+  countDown = (time, repMax) => {
+    console.log('counting down')
 
     this.setState({
-      timeRemaining: timeRemaining
+      timeRemaining: time
     }, () => {
       let interval = setInterval(() => {
         this.setState({
@@ -46,52 +32,59 @@ export default class Counter extends Component {
         }, () => {
           if (this.state.timeRemaining <= 0) {
             clearInterval(interval)
-            console.log('killed interval')
+            console.log('killed interval - work')
+
+            // rest time
             this.setState({
-              rep: this.state.rep + 1
+              timeRemaining: 5
+            }, () => {
+              let interval = setInterval(() => {
+                this.setState({
+                  timeRemaining: this.state.timeRemaining - 1
+                }, () => {
+                  if (this.state.timeRemaining <= 0) {
+                    clearInterval(interval)
+                    console.log('killed interval - rest')
+                    this.setState({
+                      rep: this.state.rep + 1
+                    }, () => {
+                      if (this.state.rep < repMax) {
+                        this.countDown(time, repMax)
+                      }
+                    })
+                  }
+                })
+              }, 100)
             })
+
           }
         })
       }, 100)
     })
   }
 
-  startRest = () => {
+  doSet = (activity) => {
+    const { eReps } = this.props
 
-  }
+    console.log('do set')
+    const { exercises, stretches, eHold, sHold } = this.props
+    // const { rep } = this.state
 
-  handleSteps = (step) => {
-    // start exercises
-    // show first activity
+    if (activity === exercises.length + stretches.length - 1) {
+      // Stretch
+        this.countDown(sHold, 1)
+
+      // Exercise
+      } else {
+        this.countDown(eHold, eReps)
+      }
+
   }
 
   handleClick = () => {
     const { activity } = this.state
-    const { exercises, stretches, eHold, sHold} = this.props
 
-    // if (activity === exercises.length + stretches.length - 1) {
-    //   this.setState({
-    //     showFinish: true
-    //   })
-    // } else {
-    //   this.setState({
-    //     activity: this.state.activity + 1
-    //   })
-    // }
-
-    let timeRemaining
-
-    // set hold time based on exercise or stretch
-    if (activity === exercises.length + stretches.length - 1) {
-      timeRemaining = sHold
-    } else {
-      timeRemaining = eHold
-    }
-
-    this.setState({
-      timeRemaining: timeRemaining
-    }, this.countDown('workS'))
-  
+    this.doSet(activity)
   }
 
   render () {
