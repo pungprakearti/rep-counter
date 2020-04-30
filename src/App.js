@@ -22,7 +22,7 @@ function App() {
     'Outside straight leg raises',
     'Back straight leg raises',
     'Standing knee bends',
-    'One leg knee bends',
+    'One leg knee bends'
   ]
   
   const stretches = [
@@ -31,12 +31,13 @@ function App() {
     'Hip rotator stretch',
     'Hamstring doorway stretch',
     'IT band stretch',
-    'Calf stretch',
+    'Calf stretch'
   ]
 
   // these are the amounts of reps and time to hold positions in seconds.
   const eHold = 10
   const eReps = 12
+  // const eReps = 3
   const eRest = 5
   const sHold = 30
 
