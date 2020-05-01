@@ -13,31 +13,30 @@ function App() {
   After the exercises are stretches.
   */ 
 
-  // data for the component looks like this:
+  // Data for the component looks like this:
   const exercises = [
     'Quad sets',
     'Mini squats',
-    'Front straight leg raises',
-    'Inside straight leg raises',
-    'Outside straight leg raises',
-    'Back straight leg raises',
-    'Standing knee bends',
-    'One leg knee bends'
+    // 'Front straight leg raises',
+    // 'Inside straight leg raises',
+    // 'Outside straight leg raises',
+    // 'Back straight leg raises',
+    // 'Standing knee bends',
+    // 'One leg knee bends'
   ]
   
   const stretches = [
     'Standing quad stretch',
     'Hamstring doorway stretch',
-    'Hip rotator stretch',
-    'Hamstring doorway stretch',
-    'IT band stretch',
-    'Calf stretch'
+    // 'Hip rotator stretch',
+    // 'Hamstring doorway stretch',
+    // 'IT band stretch',
+    // 'Calf stretch'
   ]
 
-  // these are the amounts of reps and time to hold positions in seconds.
+  // These are the amounts of reps and time to hold positions in seconds.
   const eHold = 10
   const eReps = 12
-  // const eReps = 3
   const eRest = 5
   const sHold = 30
 

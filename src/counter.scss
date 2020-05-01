@@ -1,21 +1,60 @@
 @import './main.scss';
 
-// background-colors
-.red {background-color: $red;}
-.orange {background-color: $orange;}
-.yellow {background-color: $yellow;}
-.green {background-color: $green;}
-.blue {background-color: $blue;}
-.indigo {background-color: $indigo;}
-.violet {background-color: $violet;}
+$led-color: white;
 
-.clicker {
-  width: 100vw;
+.counter {
   height: 100vh;
-  border: 1px solid;
-  background-color: $blue;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+
+  &_Button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: none;
+    border: none;
+    color: $led-color;
+    font-size: 40px;
+    text-shadow: 0 0 10px $led-color;
+
+    &Inner {
+      display: block;
+      width: calc(100vw - 30px);
+      height: calc(100vh - 30px);
+      max-width: 350px;
+      max-height: 780px;
+      margin: 0 auto;
+      border: 2px solid $led-color;
+      border-radius: 10px;
+      box-shadow: 0 0 5px $led-color;
+
+      &Activity {
+        margin-top: 20px;
+      }
+
+      &Rep {
+        margin-top: 20px;
+        font-size: 30px;
+      }
+
+      &Time {
+        display: flex;
+        font-size: 150px;
+        padding: 30px;
+        line-height: 1;
+        justify-content: center;
+        align-items: flex-end;
+
+        &S {
+          font-size: 100px;
+          line-height: 1.13;
+        }
+      }
+
+      &Side {
+        text-transform: uppercase;
+        font-size: 30px;
+      }
+    }
+  }
 }
