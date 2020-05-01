@@ -22,7 +22,7 @@ export default class Counter extends Component {
   // Count down in seconds
   countDown = async (sec) => {
     for (let i = 0; i < sec; i++) {
-      await this.delay(10)
+      await this.delay(1000)
       this.setState({
         time: this.state.time - 1
       })

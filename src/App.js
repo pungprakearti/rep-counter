@@ -17,21 +17,21 @@ function App() {
   const exercises = [
     'Quad sets',
     'Mini squats',
-    // 'Front straight leg raises',
-    // 'Inside straight leg raises',
-    // 'Outside straight leg raises',
-    // 'Back straight leg raises',
-    // 'Standing knee bends',
-    // 'One leg knee bends'
+    'Front straight leg raises',
+    'Inside straight leg raises',
+    'Outside straight leg raises',
+    'Back straight leg raises',
+    'Standing knee bends',
+    'One leg knee bends'
   ]
   
   const stretches = [
     'Standing quad stretch',
     'Hamstring doorway stretch',
-    // 'Hip rotator stretch',
-    // 'Hamstring doorway stretch',
-    // 'IT band stretch',
-    // 'Calf stretch'
+    'Hip rotator stretch',
+    'Hamstring doorway stretch',
+    'IT band stretch',
+    'Calf stretch'
   ]
 
   // These are the amounts of reps and time to hold positions in seconds.
