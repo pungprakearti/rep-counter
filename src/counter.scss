@@ -16,6 +16,10 @@ $color-rest: #338fff;
     font-size: 40px;
     text-shadow: 0 0 10px $color-default;
 
+    &:focus {
+      outline: none;
+    }
+
     &.rest {
       color: $color-rest;
       text-shadow: 0 0 15px $color-rest;
@@ -69,6 +73,10 @@ $color-rest: #338fff;
         background: none;
         color: $color-default;
         text-shadow: 0 0 10px $color-default;
+
+        &:focus {
+          outline: none;
+        }
       }
 
       &Activity {
