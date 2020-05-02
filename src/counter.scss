@@ -1,32 +1,75 @@
 @import './main.scss';
 
-$led-color: white;
+$color-default: #ffa914;
+$color-rest: #338fff;
 
 .counter {
-  height: 100vh;
-
   &_Button {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: calc(100vh - 64px);
     background: none;
     border: none;
-    color: $led-color;
+    color: $color-default;
     font-size: 40px;
-    text-shadow: 0 0 10px $led-color;
+    text-shadow: 0 0 10px $color-default;
+
+    &.rest {
+      color: $color-rest;
+      text-shadow: 0 0 15px $color-rest;
+
+      .counter_ButtonInner {
+        border: 2px solid $color-rest;
+        box-shadow: 0 0 15px $color-rest;
+
+        &Prev,
+        &Next {
+          color: $color-rest;
+          text-shadow: 0 0 15px $color-rest;
+        }
+      }
+    }
 
     &Inner {
-      display: block;
-      width: calc(100vw - 30px);
-      height: calc(100vh - 30px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: calc(100% - 30px);
+      height: calc(100vh - 64px);
       max-width: 350px;
       max-height: 780px;
+      position: relative;
       margin: 0 auto;
-      border: 2px solid $led-color;
+      margin-top: 20px;
+      border: 2px solid $color-default;
       border-radius: 10px;
-      box-shadow: 0 0 5px $led-color;
+      box-shadow: 0 0 10px $color-default;
+
+      &Prev {
+        left: 0;
+      }
+
+      &Next {
+        right: 0;
+      }
+
+      &Prev,
+      &Next {
+        display: block;
+        position: absolute;
+        top: calc(50% - 40px);
+        z-index: 1;
+        margin: 0 auto;
+        padding: 20px;
+        border: none;
+        font-size: 40px;
+        background: none;
+        color: $color-default;
+        text-shadow: 0 0 10px $color-default;
+      }
 
       &Activity {
         margin-top: 20px;
@@ -38,17 +81,7 @@ $led-color: white;
       }
 
       &Time {
-        display: flex;
         font-size: 150px;
-        padding: 30px;
-        line-height: 1;
-        justify-content: center;
-        align-items: flex-end;
-
-        &S {
-          font-size: 100px;
-          line-height: 1.13;
-        }
       }
 
       &Side {

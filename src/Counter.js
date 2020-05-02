@@ -9,9 +9,11 @@ export default class Counter extends Component {
       rep: 0,
       showFinish: false,
       side: 'right',
-      time: this.props.eHold
+      time: this.props.eHold,
+      rest: false
     }
     this.clickable = true
+    this.stop = false
   }
 
   // Add promise to setTimeout to use await
@@ -22,10 +24,12 @@ export default class Counter extends Component {
   // Count down in seconds
   countDown = async (sec) => {
     for (let i = 0; i < sec; i++) {
-      await this.delay(1000)
-      this.setState({
-        time: this.state.time - 1
-      })
+      if (!this.stop) {
+        await this.delay(1000)
+        this.setState({
+          time: this.state.time - 1
+        })
+      }
     }
   }
 
@@ -50,12 +54,14 @@ export default class Counter extends Component {
         // 1 rep
         await this.countDown(eHold)
         this.setState({
+          rest: true,
           time: eRest
         })
 
         // Rest
         await this.countDown(eRest)
         this.setState({
+          rest: false,
           time: eHold
         })
       }
@@ -68,11 +74,22 @@ export default class Counter extends Component {
 
     if ( side === 'right') {
       await this.doSet()
-      this.setState({
-        rep: 0,
-        side: 'left'
-      })
-      this.clickable = true
+
+      // if the direction buttons aren't pressed
+      if (this.state.activity === activity) {
+        this.setState({
+          rep: 0,
+          side: 'left'
+        })
+        this.clickable = true
+
+      } else {
+        // directions were pressed
+        this.setState({
+          rep: 0
+        })
+      }
+
     } else {
       await this.doSet()
       this.setState({
@@ -99,7 +116,45 @@ export default class Counter extends Component {
     }
   }
 
+  handleDirection = (e) => {
+    const { exercises, stretches, eHold, sHold } = this.props
+    const { activity } = this.state
+    let direction = 0
+    let duration
+
+    // Make main button clickable
+    this.clickable = true
+
+    // Boundaries for buttons
+    if (e.target.dataset.direction === 'prev') {
+      if (activity > 0) {
+        direction = -1
+      }
+
+    } else {
+      if (activity < exercises.length + stretches.length - 1) {
+        direction = 1
+      }
+    }
+
+    if (activity + direction > exercises.length - 1) {
+      duration = sHold
+    } else {
+      duration = eHold
+    }
+
+    this.setState({
+      activity: activity + direction,
+      time: duration,
+      side: 'right'
+    }, () => {
+      this.stop = true
+    })
+  }
+
   handleClick = () => {
+    this.stop = false
+
     if (this.clickable) {
       // Reset all variables
       if (this.state.showFinish) {
@@ -119,12 +174,18 @@ export default class Counter extends Component {
 
   render () {
     const { exercises, stretches, eReps } = this.props
-    const { activity, rep, showFinish, side, time  } = this.state
+    const { activity, rep, showFinish, side, time, rest } = this.state
 
     return (
       <div className='counter'>
-        <button className='counter_Button' onClick={this.handleClick}>
+        <button className={`counter_Button${rest ? ' rest' : ''}`} onClick={this.handleClick}>
           <div className='counter_ButtonInner'>
+            <button className='counter_ButtonInnerPrev' data-direction='prev' onClick={this.handleDirection}>
+              {'<'}
+            </button>
+            <button className='counter_ButtonInnerNext' data-direction='next' onClick={this.handleDirection}>
+              {'>'}
+            </button>
             {activity <= exercises.length - 1 ? (
               <Fragment>
                 <div className='counter_ButtonInnerActivity'>
@@ -148,9 +209,6 @@ export default class Counter extends Component {
                 <div className='counter_ButtonInnerTime'>
                   <div className='counter_ButtonInnerTimeSec'>
                     {time}
-                  </div>
-                  <div className='counter_ButtonInnerTimeS'>
-                    s
                   </div>
                 </div>
                 <div className='counter_ButtonInnerSide'>
