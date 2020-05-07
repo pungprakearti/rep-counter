@@ -16,7 +16,7 @@ export default class Counter extends Component {
     this.stop = false
   }
 
-  // Add promise to setTimeout to use await /////// SAVE TIME OUT TO STOP IT WHENEVER
+  // Add promise to setTimeout to use await
   delay = async (ms) => {
     return await new Promise((resolve) => setTimeout(resolve, ms))
   }
