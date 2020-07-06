@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
+
 // Colors
 $violet: #b269df;
 $indigo: #6d68d1;
@@ -10,4 +12,9 @@ $red: #ee610f;
 //global
 html, body, #root, .App, .counter {
   height: 100%;
+}
+
+* {
+  font-family: 'Major Mono Display', monospace;
+  text-transform: lowercase;
 }

@@ -181,12 +181,12 @@ export default class Counter extends Component {
       <div className='counter'>
         <button className={`counter_Button${rest ? ' rest' : ''}`} onClick={this.handleClick}>
           <div className='counter_ButtonInner'>
-            <button className='counter_ButtonInnerPrev' data-direction='prev' onClick={this.handleDirection}>
+            <div className='counter_ButtonInnerPrev' data-direction='prev' onClick={this.handleDirection}>
               {'<'}
-            </button>
-            <button className='counter_ButtonInnerNext' data-direction='next' onClick={this.handleDirection}>
+            </div>
+            <div className='counter_ButtonInnerNext' data-direction='next' onClick={this.handleDirection}>
               {'>'}
-            </button>
+            </div>
             {activity <= exercises.length - 1 ? (
               <Fragment>
                 <div className='counter_ButtonInnerActivity'>
@@ -197,9 +197,14 @@ export default class Counter extends Component {
                 </div>
             </Fragment>
             ) : (
-              <div className='counter_ButtonInnerActivity'>
-                {stretches[activity - exercises.length]}
-              </div>
+              <Fragment>
+                <div className='counter_ButtonInnerActivity'>
+                  {stretches[activity - exercises.length]}
+                </div>
+                <div className='counter_ButtonInnerRep'>
+                  - - -
+                </div>
+              </Fragment>
             )}
             {showFinish ? (
               <div>
