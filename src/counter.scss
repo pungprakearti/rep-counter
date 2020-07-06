@@ -1,7 +1,10 @@
 @import './main.scss';
 
 $color-default: #ffa914;
+$color-default-bg: rgba(255, 169, 20, 0.25);
 $color-rest: #338fff;
+$color-rest-bg: rgba(51, 143, 255, 0.25);
+
 
 .counter {
   &_Button {
@@ -9,12 +12,14 @@ $color-rest: #338fff;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: calc(100vh - 64px);
+    height: 100%;
     background: none;
     border: none;
     color: $color-default;
-    font-size: 40px;
+    font-size: 24px;
+    // text-transform: uppercase;
     text-shadow: 0 0 10px $color-default;
+    background-color: $color-default-bg;
 
     &:focus {
       outline: none;
@@ -23,11 +28,9 @@ $color-rest: #338fff;
     &.rest {
       color: $color-rest;
       text-shadow: 0 0 15px $color-rest;
+      background-color: $color-rest-bg;
 
       .counter_ButtonInner {
-        border: 2px solid $color-rest;
-        box-shadow: 0 0 15px $color-rest;
-
         &Prev,
         &Next {
           color: $color-rest;
@@ -39,18 +42,19 @@ $color-rest: #338fff;
     &Inner {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: calc(100% - 30px);
-      height: calc(100vh - 64px);
-      max-width: 350px;
-      max-height: 780px;
+      height: 100%;
+      width: 100%;
       position: relative;
       margin: 0 auto;
-      margin-top: 20px;
-      border: 2px solid $color-default;
-      border-radius: 10px;
-      box-shadow: 0 0 10px $color-default;
+      padding-top: 10px;
+
+      &Activity {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 60px;
+        padding: 0 50px;
+      }
 
       &Prev {
         left: 0;
@@ -64,10 +68,9 @@ $color-rest: #338fff;
       &Next {
         display: block;
         position: absolute;
-        top: calc(50% - 40px);
+        top: 3%;
         z-index: 1;
         margin: 0 auto;
-        padding: 20px;
         border: none;
         font-size: 40px;
         background: none;
@@ -79,22 +82,16 @@ $color-rest: #338fff;
         }
       }
 
-      &Activity {
-        margin-top: 20px;
-      }
-
       &Rep {
-        margin-top: 20px;
-        font-size: 30px;
+        margin-top: 2px;
       }
 
       &Time {
-        font-size: 150px;
+        font-size: 50px;
       }
 
       &Side {
         text-transform: uppercase;
-        font-size: 30px;
       }
     }
   }
