@@ -197,7 +197,7 @@ export default class Counter extends Component {
                 </div>
             </Fragment>
             ) : (
-              <div>
+              <div className='counter_ButtonInnerActivity'>
                 {stretches[activity - exercises.length]}
               </div>
             )}

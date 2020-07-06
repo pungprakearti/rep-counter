@@ -6,3 +6,8 @@ $green: #5bd354;
 $yellow: #f2de00;
 $orange: #ed8200;
 $red: #ee610f;
+
+//global
+html, body, #root, .App, .counter {
+  height: 100%;
+}
